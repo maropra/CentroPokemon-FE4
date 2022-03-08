@@ -5,12 +5,13 @@ import entrenador from "../../assets/entrenador.png";
 import pikachu from "../../assets/pikachu.png";
 import Input from "../Input/Input";
 import Detalle from "./Detalle";
-import FormContextProvider from "../../context/ContextoFormulario";
 
 // En este componente tenemos nuestro formulario y dentro de él
 // tenemos los componentes que necesitan consumir nuestro estado.
 // Recuerda cual es el paso que debemos tomar para que nuestros
-// componentes puedan consumir un estado global.
+// componentes puedan consumir un estado global. ???
+
+//Sumar tipo de Pokémon, elemento, altura y edad al formulario.
 
 const Formulario = () => {
   return (
@@ -41,21 +42,23 @@ const Formulario = () => {
                 <img src={entrenador} alt="entrenador" />
                 <span>ENTRENADOR</span>
               </p>
-              <Input name="nombre" label="Nombre" />
-              <Input name="apellido" label="Apellido" />
-              <Input name="email" label="Email" type="email" />
+              <Input name="nombre" label="Nombre" esPokemon={false} />
+              <Input name="apellido" label="Apellido" esPokemon={false}/>
+              <Input name="email" label="Email" type="email" esPokemon={false}/>
             </div>
             <div>
               <p className="nombre-seccion">
                 <img src={pikachu} alt="pikachu" />
                 <span>POKEMON</span>
               </p>
-              <Input name="nombrePokemon" label="Nombre" />
+              <Input name="nombrePokemon" label="Nombre" esPokemon={true}/>
+              <Input name="tipoPokemon" label="Tipo" esPokemon={true}/>
+              <Input name="elementoPokemon" label="Elemento" esPokemon={true}/>
+              <Input name="alturaPokemon" label="Altura" esPokemon={true}/>
+              <Input name="edadPokemon" label="Edad" esPokemon={true}/>
             </div>
           </div>
-          <FormContextProvider>
             <Detalle />
-          </FormContextProvider>
         </div>
       </div>
     </>

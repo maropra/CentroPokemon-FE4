@@ -19,7 +19,12 @@ const initialState = {
   },
 };
 
-//creamos función reductora
+/**
+ * Funcion reductora que define que permite actualizar los datos del entrenador y del pokemon
+ * @param {*} state Estado actual
+ * @param {object} action Objeto que contiene: type (acción a disparar), payload (datos enviados en el disparo)
+ * @returns 
+ */
 const reducer = (state, action) => {
   switch (action.type) {
     case "ACTUALIZAR_ENTRENADOR":
@@ -49,7 +54,6 @@ const FormContextProvider = ({ children }) => {
   //ESTADO CON USE REDUCER
   let [state, dispatch] = useReducer(reducer, initialState)
 
-
   /**
    * Dispara la acción del hook useReducer enviando información en formato clave: valor
    * @param {string} type Acción que se quiera realizar de la función reductora
@@ -61,7 +65,6 @@ const FormContextProvider = ({ children }) => {
       type: type, 
       payload: {[clave]: valor}
     })
-
   }
 
   // Retornamos el provider junto con sus children

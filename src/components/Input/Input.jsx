@@ -1,34 +1,37 @@
 import React, { useContext, useState } from "react";
 import { FormContext } from "../../context/ContextoFormulario";
 
+/**
+ * Ejemplo de uso del componente <Input name="nombrePokemon" label="Nombre" esPokemon={true}>
+ * @param {string} name Identificador del input
+ * @param {string} label Nombre que se mostrará como label encima del input
+ * @param {string} type Indica el tipo de input
+ * @param {boolean} esPokemon  Indica si recolecta info del entrenador o del pokemon
+ */
 const Input = ({ name, label, type = "text", esPokemon}) => {
-  // Aqui deberíamos acceder al estado global para poder obtener los datos
-  // del formulario y una manera de actualizar los mismos.
+  // Acceder al estado global y guardar en el contexto los datos del form.
   const { state, handleBlur } = useContext(FormContext);
 
-  // También, utilizaremos un estado local para manejar el estado del input.
+  // Estado local para manejar el estado del input.
   const [input, setInput] = useState('');
 
   const onChange = (e) => {
-    // Aquí deberíamos actualizar el estado local del input.
+    // Actualizar el estado local del input.
     const valor = e.target.value;
     setInput(valor);
   };
 
+  /**
+   * Clasifica los datos dependiendo si son del entrenador o del pokemon y los guarda en el contexto global 
+   */
   const onBlur = (e) => {
+    // Actualizar el estado global con los datos de cada input.
     e.preventDefault();
     if(esPokemon){
       handleBlur("ACTUALIZAR_POKEMON", name, input)  
     }else{
       handleBlur("ACTUALIZAR_ENTRENADOR", name, input)
     }
-    console.log(state)
-
-    // Aqui deberíamos actualizar el estado global con los datos de
-    // cada input.
-    // TIP: Podemos utilizar el nombre de cada input para guardar
-    // los datos en el estado global usando una notación de { clave: valor }
-    //agregarDato(name, input);
   };
 
   return (

@@ -1,7 +1,4 @@
-// Aqui debemos crear nuestro contexto y nuestro provider.
 import React, { createContext, useReducer } from "react";
-
-// crear nuestro useReducer en el contexto del formulario, para concentrar todo el estado del formulario en un solo lugar (y no tenerlo repartido en el código). Creamos el Hook (dentro del ContextoFormulario), y le agregamos el estado inicial. Por el momento, pongamos una función vacía como función reductora.
 
 //creamos nuestro contexto
 export const FormContext = createContext();
@@ -48,17 +45,17 @@ const reducer = (state, action) => {
 
 // Creamos el povider
 const FormContextProvider = ({ children }) => {
-  //ESTADO CON USE STATE
-  // Aquí almacenamos los datos ingresados
-  // const [datosForm, setDatosForm] = useState("");
-  //Defino funcion para agregar los datos al estado
-  // const agregarDato = (clave, valor) => {
-  //   setDatosForm({ ...datosForm, [clave]: valor });
-  // };
 
   //ESTADO CON USE REDUCER
   let [state, dispatch] = useReducer(reducer, initialState)
 
+
+  /**
+   * Dispara la acción del hook useReducer enviando información en formato clave: valor
+   * @param {string} type Acción que se quiera realizar de la función reductora
+   * @param {string} clave Propiedad del objeto
+   * @param {string} valor Valor asignado a la propiedad ingresada
+   */
   const handleBlur = (type, clave, valor) => {
     dispatch({
       type: type, 

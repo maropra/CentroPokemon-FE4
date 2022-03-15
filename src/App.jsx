@@ -3,19 +3,22 @@ import Home from "./components/Home/Home";
 import Formulario from "./components/Formulario/Formulario";
 import "./App.css";
 import FormContextProvider from "./context/ContextoFormulario";
+import {QueryClient, QueryClientProvider} from "react-query";
 
 function App() {
+
+  const queryClient = new QueryClient();
+
   return (
     <div className="App">
-      {
-        //Envuelvo la aplicacion en el context provider
-      }
-      <FormContextProvider>
-        <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/formularioIngreso" element={<Formulario />} />
-        </Routes>
-      </FormContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <FormContextProvider>
+          <Routes>
+            <Route path="/" exact element={<Home />} />
+            <Route path="/formularioIngreso" element={<Formulario />} />
+          </Routes>
+        </FormContextProvider>
+      </QueryClientProvider>
     </div>
   );
 }

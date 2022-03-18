@@ -16,6 +16,7 @@ const initialState = {
     elementoPokemon: "",
     alturaPokemon: "",
     edadPokemon: "",
+    especiePokemon: ""
   },
 };
 

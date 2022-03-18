@@ -222,8 +222,8 @@ h1 {
 }
 
 .popup-especie {
-  width: 30vw;
-  height: 60vh;
+  /* width: 30vw;
+  height: 60vh; */
   position: absolute;
   top: 80%;
   left: 50%;
@@ -265,8 +265,8 @@ h1 {
 }
 
 .paginador {
-  position: absolute;
-  bottom: 0;
+  /* position: absolute;
+  bottom: 0; */
   width: 100%;
   display: flex;
   justify-content: center;

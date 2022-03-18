@@ -25,8 +25,9 @@ const Detalle = () => {
           <p>Nombre:{state?.pokemon.nombrePokemon}</p>
           <p>Tipo:{state?.pokemon.tipoPokemon}</p>
           <p>Elemento:{state?.pokemon.elementoPokemon}</p>
-          <p>altura:{state?.pokemon.alturaPokemon}</p>
-          <p>edad:{state?.pokemon.edadPokemon}</p>
+          <p>Altura:{state?.pokemon.alturaPokemon}</p>
+          <p>Edad:{state?.pokemon.edadPokemon}</p>
+          <p>Especie:{state?.pokemon.especiePokemon}</p>
         </div>
       </section>
       <button

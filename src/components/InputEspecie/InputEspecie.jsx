@@ -1,16 +1,20 @@
 import React, { useState, useContext } from "react";
+import { useQuery } from "react-query";
 import { FormContext } from "../../context/ContextoFormulario";
-
-// Debemos reemplazar este array por los datos provenientes de la API.
-const especies = [
-    { name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon-species/1/" },
-    { name: "ivysaur", url: "https://pokeapi.co/api/v2/pokemon-species/2/" },
-    { name: "venusaur", url: "https://pokeapi.co/api/v2/pokemon-species/3/" },
-  ];
+import { obtenerEspeciesPokemon } from "../../utils/getEspeciesPokemon";
 
 const InputEspecie = ({name, label}) => {
     const [mostrarPopup, setMostrarPopup] = useState(false);
+    
     const {handleBlur} = useContext(FormContext);
+
+    const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon-species/?offset=0&limit=20")
+
+    const {data, isLoading, isError} = useQuery(
+      ["especiesPokemon", url],
+      () => obtenerEspeciesPokemon(url),
+      { keepPreviousData: true }
+    )
     
     const elegirEspecie = (e, nombreEspecie) => {
         e.preventDefault();
@@ -18,7 +22,7 @@ const InputEspecie = ({name, label}) => {
         setMostrarPopup(false);
     }
 
-    const listadoEspecies = especies.map(especie => {
+    const listadoEspecies = data?.results?.map(especie => {
         return (<button 
                     key={especie.name}
                     className="botones-especie"
@@ -27,6 +31,25 @@ const InputEspecie = ({name, label}) => {
                 </button>);
     })
 
+    const handleNext = () => {
+      setUrl(data?.next)
+      console.log(url);
+    }
+
+    const handlePrevious = () => {
+      if(data.previous !== null) setUrl(data.previous)
+    }
+
+    if (isLoading)
+    return <div className="input-contenedor" style={{ color: "white" }}>Cargando...</div>;
+
+    if (isError)
+    return (
+      <div className="input-contenedor">
+        Ups, hubo un error
+      </div>
+    );
+
     return(
         <div className="input-contenedor">
         {mostrarPopup && (
@@ -34,8 +57,8 @@ const InputEspecie = ({name, label}) => {
             <h4>Seleccionar especie</h4>
             <div className="contenedor-especies">{listadoEspecies}</div>
             <div className="paginador">
-                <button className="boton-anterior">Anterior</button>
-                <button className="boton-siguiente">Siguiente</button>
+                <button className="boton-anterior" onClick={handlePrevious}>Anterior</button>
+                <button className="boton-siguiente" onClick={handleNext}>Siguiente</button>
             </div>
             </div>
         )}

@@ -1,16 +1,15 @@
 import React, { useContext, useState } from "react";
-import { Component } from "react/cjs/react.production.min";
 import { FormContext } from "../../context/ContextoFormulario";
 import PropTypes from "prop-types";
 
 /**
  * Componente que devuelve un input del formulario con su label
  * Ejemplo de uso del componente <Input name="nombrePokemon" label="Nombre" esPokemon={true}>
- * @returns {Component}
+ *
  */
 const Input = ({ name, label, type = "text", esPokemon}) => {
   // Acceder al estado global y guardar en el contexto los datos del form.
-  const { state, handleBlur } = useContext(FormContext);
+  const { handleBlur } = useContext(FormContext);
 
   // Estado local para manejar el estado del input.
   const [input, setInput] = useState('');
@@ -51,8 +50,8 @@ const Input = ({ name, label, type = "text", esPokemon}) => {
 };
 
 Input.prototypes = {
-  name: PropTypes.string,
-  label: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   type: PropTypes.string,
   esPokemon: PropTypes.bool
 }

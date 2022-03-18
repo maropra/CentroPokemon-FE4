@@ -6,6 +6,7 @@ import pikachu from "../../assets/pikachu.png";
 import Input from "../Input/Input";
 import Detalle from "./Detalle";
 import Select from "../Select/Select";
+import InputEspecie from "../InputEspecie/InputEspecie";
 
 const Formulario = () => {
   return (
@@ -42,11 +43,11 @@ const Formulario = () => {
                 <span>POKEMON</span>
               </p>
               <Input name="nombrePokemon" label="Nombre" esPokemon={true}/>
-              {/* <Input name="tipoPokemon" label="Tipo" esPokemon={true}/> */}
               <Select name="tipoPokemon" label="tipo" />
               <Input name="elementoPokemon" label="Elemento" esPokemon={true}/>
               <Input name="alturaPokemon" label="Altura" esPokemon={true}/>
               <Input name="edadPokemon" label="Edad" esPokemon={true}/>
+              <InputEspecie name="especiePokemon" label="Especie"/>
             </div>
           </div>
             <Detalle />

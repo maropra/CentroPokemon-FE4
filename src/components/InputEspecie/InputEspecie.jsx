@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useQuery } from "react-query";
 import { FormContext } from "../../context/ContextoFormulario";
-import { obtenerEspeciesPokemon } from "../../utils/getEspeciesPokemon";
+import { obtenerEspeciesPokemon } from "../../servicios/getEspeciesPokemon";
 
 const InputEspecie = ({name, label}) => {
     const [mostrarPopup, setMostrarPopup] = useState(false);

@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import {useQuery} from "react-query";
 import { FormContext } from "../../context/ContextoFormulario";
-import { obtenerTiposPokemon } from "../../utils/getTiposPokemon";
+import { obtenerTiposPokemon } from "../../servicios/getTiposPokemon";
 
 const Select = ({ name, label }) => {
 
@@ -35,7 +35,7 @@ const Select = ({ name, label }) => {
 
         <div className="input-contenedor">
             <label htmlFor={name}>{label}</label>
-            <select name={name} onChange={onChange} disabled={isLoading || isError}>
+            <select name={isLoading ? "Cargando" : name} onChange={onChange} disabled={isLoading || isError}>
                 {tipos}
             </select>
         </div>
